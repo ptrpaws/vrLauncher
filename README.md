@@ -8,3 +8,6 @@ Allows you to launch various /hidden/ options of the Oculus Quest (2)
 Make sure you start the recording before you open the app. Then it should work.
 ## Building it
 Just use Android Studio, it should be self explanitory.
+## TO:DO
+- Improve the UI
+- Some options allow for additional information to be passed to them -> more reverse engineering + an imput field are needed
