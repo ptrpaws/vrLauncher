@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //objects
-        val dropdown = findViewById<Spinner>(R.id.spinner)
+        val dropdown = findViewById<com.toptoche.searchablespinnerlibrary.SearchableSpinner>(R.id.spinner)
         val selectedText = findViewById<TextView>(R.id.selectedText)
         val goButton = findViewById<Button>(R.id.goButton)
         val versionSpinner = findViewById<Spinner>(R.id.versionSpinner)
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity() {
 
         //option changer
         dropdown.adapter = adapterContainer[versionSpinner.getSelectedItemPosition()]
+        dropdown.setTitle("Select Item");
+        dropdown.setPositiveButton("OK");
 
         dropdown.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View,
