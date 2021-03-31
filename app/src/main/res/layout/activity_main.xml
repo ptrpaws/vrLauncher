@@ -47,4 +47,13 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Spinner
+        android:id="@+id/versionSpinner"
+        android:layout_width="127dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
