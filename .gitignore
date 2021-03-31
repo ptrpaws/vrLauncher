@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/release/output-metadata.json
+app/release/app-release.apk
+.idea/vcs.xml
