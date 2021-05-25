@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View,
                                         position: Int, id: Long) {
                 dropdown.adapter = adapterContainer[position]
-                selectedText.text = resultContainer[position][dropdown.getSelectedItemPosition()]
+                selectedText.text = resultContainer[position][dropdown.selectedItemPosition]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -57,14 +57,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         //option changer
-        dropdown.adapter = adapterContainer[versionSpinner.getSelectedItemPosition()]
+        dropdown.adapter = adapterContainer[versionSpinner.selectedItemPosition]
         dropdown.setTitle("Select Item");
         dropdown.setPositiveButton("OK");
 
         dropdown.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View,
                                         position: Int, id: Long) {
-                selectedText.text = resultContainer[versionSpinner.getSelectedItemPosition()][position]
+                selectedText.text = resultContainer[versionSpinner.selectedItemPosition][position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
