@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId "com.bos.vrLauncher"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 8
         versionName "1.8"
 
