@@ -2,7 +2,7 @@
 Allows you to launch various /hidden/ options of the Oculus Quest (2)
 ## Using it
 1. Sideload the apk onto your Oculus Quest (2)
-2. Choose the option you want to run from the dropdown menu at the top (popular ones are DOGFOOD_HUB for the dev menu and PASSTHROUGH_PORTAL for the Passthrough Keyboard feature).
+2. Choose the option you want to run from the dropdown menu at the top.
 3. Click on the "GO" button
 ## Recording features
 Make sure you start the recording before you open the app. Then it should work.
