@@ -34,10 +34,8 @@ class MainActivity : AppCompatActivity() {
             Request.Method.GET, "https://api.github.com/repos/basti564/vrLauncher/releases/latest",
             { response ->
                 try {
-                    Log.v("vrLauncher", "1")
                     val jsonObject =
                         JSONTokener(response).nextValue() as JSONObject
-                    Log.v("vrLauncher", "2")
                     if (jsonObject.getString("tag_name") != "v" + info.versionName) {
                         Log.v("vrLauncher", "New version available!!!!")
 
