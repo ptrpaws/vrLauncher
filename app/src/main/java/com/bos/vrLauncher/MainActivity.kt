@@ -2,20 +2,76 @@ package com.bos.vrLauncher
 
 import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
+import org.json.JSONTokener
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val queue = Volley.newRequestQueue(this)
+
+        val manager = this.packageManager
+        val info = manager.getPackageInfo(this.packageName, PackageManager.GET_ACTIVITIES)
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, "https://api.github.com/repos/basti564/vrLauncher/releases/latest",
+            { response ->
+                try {
+                    Log.v("vrLauncher", "1")
+                    val jsonObject =
+                        JSONTokener(response).nextValue() as JSONObject
+                    Log.v("vrLauncher", "2")
+                    if (jsonObject.getString("tag_name") != "v" + info.versionName) {
+                        Log.v("vrLauncher", "New version available!!!!")
+
+                        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                        builder.setTitle("An update is available!")
+                        builder.setMessage(
+                            "We recommend you to update to the latest version of vrLauncher (" + jsonObject.getString(
+                                "tag_name"
+                            ) + ")"
+                        )
+                        builder.setPositiveButton("View") { dialog, _ ->
+                            val browserIntent = Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(jsonObject.getString("html_url"))
+                            )
+                            startActivity(browserIntent)
+                        }
+                        builder.setNegativeButton("Dismiss") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        val alertDialog: AlertDialog = builder.create()
+                        alertDialog.show()
+                        alertDialog.window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+                    } else {
+                        Log.i("vrLauncher", "vrLauncher is up to date :)")
+                    }
+                }
+                catch (e: Exception){
+                    Log.e("vrLauncher", "Received invalid JSON", e)
+                }
+            },
+            { Log.w("vrLauncher", "Couldn't get update info") })
+
+        queue.add(stringRequest)
 
         //objects
         val dropdown = findViewById<com.toptoche.searchablespinnerlibrary.SearchableSpinner>(R.id.spinner)
