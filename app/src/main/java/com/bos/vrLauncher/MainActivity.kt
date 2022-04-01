@@ -135,8 +135,8 @@ class MainActivity : AppCompatActivity() {
 
         //option changer
         dropdown.adapter = adapterContainer[versionSpinner.selectedItemPosition]
-        dropdown.setTitle("Select Item");
-        dropdown.setPositiveButton("OK");
+        dropdown.setTitle("Select Item")
+        dropdown.setPositiveButton("OK")
 
         dropdown.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View,
